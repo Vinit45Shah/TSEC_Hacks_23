@@ -4,6 +4,8 @@ const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
+const fetchUser = require("../middleware/fetchUser");
+const medicines = require("../models/medicine.model");
 
 router.post(
   "/registeruser",
@@ -81,5 +83,41 @@ router.post(
     }
   }
 );
+
+router.get("/fetchAllMedicinesUser", fetchUser, async (req, res) => {
+  try {
+    let meds = await medicines.find({
+      ownedby: { $exists: true },
+      sendto: { $exists: false },
+    });
+    res.json({ meds });
+  } catch (error) {
+    console.log(error);
+    res.json({ status: "error", error: error });
+  }
+});
+
+router.get("/getMedicineUser", fetchUser, async (req, res) => {
+  try {
+    let medicine = await medicines.findOneAndUpdate(
+      { _id: req.body.id },
+      {
+        sendto: req.user.id,
+      }
+    );
+
+    let user = await users.findOneAndUpdate(
+      { _id: req.user.id },
+      {
+        $push: { medicine: req.body.id },
+      }
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    console.log(err);
+    res.json({ status: "error", error: err });
+  }
+});
 
 module.exports = router;
