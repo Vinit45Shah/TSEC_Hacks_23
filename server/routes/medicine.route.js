@@ -26,6 +26,7 @@ router.post(
     let success = false;
     try {
       const user = await users.findById(req.user.id);
+      console.log(req.file);
       const {
         commonname,
         quantity,

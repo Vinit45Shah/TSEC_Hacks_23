@@ -2,19 +2,49 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import bg from "../assets/bg.jpg";
 import girl from "../assets/girl.png";
+import axios from "axios";
 const PostMedicine = () => {
-  const [commonname, setcommonname] = useState("");
-  const [quantity, setquantity] = useState(0);
-  const [expiry, setexpiry] = useState(null);
-  const [scientificname, setscientificname] = useState("");
-  const [manufacturer, setmanufacturer] = useState("");
-  const [time, settime] = useState("");
-  const [file, setfile] = useState(null);
+  const [commonname, setCommonname] = useState("");
+  const [quantity, setQuantity] = useState(0);
+  const [expiry, setExpiry] = useState("");
+  const [scientificname, setScientificname] = useState("");
+  const [manufacturer, setManufacturer] = useState("");
+  const [time, setTime] = useState("");
+  const [file, setFile] = useState("");
+
+  const url = "http://localhost:5000/";
+
+  async function post(e) {
+    e.preventDefault();
+    console.log(file);
+    try {
+      const res = await axios.post(
+        `${url}postmed`,
+        {
+          commonname,
+          quantity,
+          expiry,
+          scientificname,
+          manufacturer,
+          time,
+          file,
+        },
+        {
+          headers: {
+            "auth-token": localStorage.getItem("token"),
+          },
+          files: {},
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div>
       <Navbar />
-      <div className="mx-auto bg-gradient-to-r from-primary-dark to-primary-light min-h-screen rounded-xl text-white w-3/4">
+      <div className="mx-auto bg-gradient-to-r from-primary-dark to-primary-light min-h-screen rounded-xl w-3/4">
         <div className="text-center font-bold text-3xl p-2 pt-6">
           Donate Medicines
         </div>
@@ -32,7 +62,7 @@ const PostMedicine = () => {
                     className="rounded-xl border border-purple w-96 p-1"
                     value={commonname}
                     onChange={(e) => {
-                      setcommonname(e.target.value);
+                      setCommonname(e.target.value);
                     }}
                   />
                 </div>
@@ -47,7 +77,7 @@ const PostMedicine = () => {
                     className="rounded-xl border border-purple w-96 p-1"
                     value={quantity}
                     onChange={(e) => {
-                      setquantity(e.target.value);
+                      setQuantity(e.target.value);
                     }}
                   />
                 </div>
@@ -62,7 +92,7 @@ const PostMedicine = () => {
                     className="rounded-xl border border-purple w-96 p-1"
                     value={expiry}
                     onChange={(e) => {
-                      setexpiry(e.target.value);
+                      setExpiry(e.target.value);
                     }}
                   />
                 </div>
@@ -77,7 +107,7 @@ const PostMedicine = () => {
                     className="rounded-xl border border-purple w-96 p-1"
                     value={scientificname}
                     onChange={(e) => {
-                      setscientificname(e.target.value);
+                      setScientificname(e.target.value);
                     }}
                   />
                 </div>
@@ -92,7 +122,21 @@ const PostMedicine = () => {
                     className="rounded-xl border border-purple w-96 p-1"
                     value={manufacturer}
                     onChange={(e) => {
-                      setmanufacturer(e.target.value);
+                      setManufacturer(e.target.value);
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="py-2 px-4">
+                <label className="font-medium text-lg">Time Of Delivery:</label>
+                <div className="flex flex-row flex-wrap justify-between">
+                  <input
+                    type="text"
+                    name="scientificName"
+                    className="rounded-xl border border-purple w-96 p-1"
+                    value={time}
+                    onChange={(e) => {
+                      setTime(e.target.value);
                     }}
                   />
                 </div>
@@ -107,14 +151,15 @@ const PostMedicine = () => {
                     type="file"
                     name="picture"
                     className="rounded-xl border border-purple w-96 p-1"
-                    value={file}
                     onChange={(e) => {
-                      setfile(e.target.files[0]);
+                      setFile(e.target.files[0]);
                     }}
                   />
                 </div>
               </div>
-              <button className="btn-primary w-1/3 mx-auto">Donate</button>
+              <button className="btn-primary w-1/3 mx-auto" onClick={post}>
+                Donate
+              </button>
             </div>
           </div>
         </div>
