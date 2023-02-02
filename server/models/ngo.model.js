@@ -15,11 +15,7 @@ const NGOSchema = new mongoose.Schema({
   },
   number: {
     type: Number,
-    validate(value) {
-      if (!validator.isMobilePhone(`${value}`)) {
-        throw new Error("Invalid phone number.");
-      }
-    },
+    required: true,
   },
   address: {
     type: String,
@@ -31,6 +27,6 @@ const NGOSchema = new mongoose.Schema({
   },
 });
 
-const NGOModel = mongoose.model("NGO", NGOSchema);
+const NGO = mongoose.model("NGO", NGOSchema);
 
-module.exports = NGOModel;
+module.exports = NGO;

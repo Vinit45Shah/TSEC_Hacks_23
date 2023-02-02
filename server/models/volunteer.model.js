@@ -15,11 +15,11 @@ const VolunteerSchema = new mongoose.Schema({
   },
   number: {
     type: Number,
-    validate(value) {
-      if (!validator.isMobilePhone(`${value}`)) {
-        throw new Error("Invalid phone number.");
-      }
-    },
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
   },
   ngo: {
     type: mongoose.Schema.Types.ObjectId,
@@ -27,6 +27,6 @@ const VolunteerSchema = new mongoose.Schema({
   },
 });
 
-const VolunteerModel = mongoose.model("Volunteer", VolunteerSchema);
+const Volunteer = mongoose.model("Volunteer", VolunteerSchema);
 
-module.exports = VolunteerModel;
+module.exports = Volunteer;
