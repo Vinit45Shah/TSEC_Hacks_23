@@ -15,17 +15,17 @@ function App() {
     <div className="App font-ourfont overflow-x-hidden">
       <Router>
         <Routes>
-          <Route path="/medicine" element={<Medicine/>} />
-          <Route path="/fetchallmedicine" element={<GetMedicine/>} />
-          <Route path="/clienthome" element={<UserLandingPage/>} />
-          <Route path="/postmedicine" element={<PostMedicine/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/ocr" element={<OCR/>} />
-          <Route path="/predict" element={<Diabetes/>} />
-          <Route path="/" element={<Home/>} />
-          <Route path="/find-medicine" element={<FindMedicine/>} />
+          <Route path="/medicine/:id" element={<Medicine />} />
+          <Route path="/fetchallmedicine" element={<GetMedicine />} />
+          <Route path="/clienthome" element={<UserLandingPage />} />
+          <Route path="/postmedicine" element={<PostMedicine />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/ocr" element={<OCR />} />
+          <Route path="/predict" element={<Diabetes />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/find-medicine" element={<FindMedicine />} />
         </Routes>
-        </Router>
+      </Router>
     </div>
   );
 }
