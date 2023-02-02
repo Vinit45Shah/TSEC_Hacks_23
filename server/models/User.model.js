@@ -23,6 +23,10 @@ const userSchema = new Schema(
         address: {
             type: String,
         },
+        points: {
+            type: Number,
+            default: 0
+        },
     }
 );
 

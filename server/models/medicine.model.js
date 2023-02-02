@@ -28,6 +28,22 @@ const medicineSchema = new Schema(
         time: {
             type: String,
         },
+        ownedby: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "NGO"
+        },
+        sendto: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        transferredby1: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Volunteer"
+        },
+        transferredby2: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Volunteer"
+        },
     }
 );
 
