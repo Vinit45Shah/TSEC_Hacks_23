@@ -1,9 +1,12 @@
 const express = require("express");
 const volunteers = require("../models/volunteer.model");
+const ngos = require("../models/ngo.model");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
+const fetchVol = require("../middleware/fetchVolunteer");
+const medicines = require("../models/medicine.model");
 
 router.post(
   "/registervolunteer",
@@ -84,5 +87,31 @@ router.post(
     }
   }
 );
+
+router.get("/deliverMed", fetchVol, async (req, res) => {
+  try {
+    let volunteer = await volunteers.findOne({ _id: req.volunteer.id });
+    let med = await medicines.findOne({ _id: req.body.id });
+
+    if (!med.transferredby1) {
+      let medx = await medicines.findOneAndUpdate(
+        { _id: med._id },
+        { transferredby1: req.volunteer.id }
+      );
+      res.json({ success: true, message: "Transaction 1" });
+    } else if (!med.transferredby2) {
+      let medx = await medicines.findOneAndUpdate(
+        { _id: med._id },
+        { transferredby2: req.volunteer.id }
+      );
+      res.json({ success: true, message: "Transaction 2" });
+    } else {
+      res.json({ error: "Medicine already delivered" });
+    }
+  } catch (err) {
+    console.log(err);
+    res.json({ status: "error", error: err });
+  }
+});
 
 module.exports = router;
