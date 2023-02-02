@@ -1,13 +1,16 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, unused_import, duplicate_ignore
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:tsec_app/pages/home_page.dart';
 
 // ignore: unused_import
 
 // ignore: unused_import
 
+import 'pages/description_medicine.dart';
+import 'pages/donate_page.dart';
 import 'pages/get_started.dart';
 // ignore: unused_import
 
@@ -34,7 +37,8 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
             theme: ThemeData(
               primarySwatch: Colors.blue,
+              visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
-            home: GetStarted())));
+            home: DonatePage())));
   }
 }

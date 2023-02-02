@@ -42,6 +42,11 @@ dependencies:
   auth: ^8.2.0+02
   provider: ^6.0.5
   flutter_swiper: ^1.1.6
+  flutter_gif: ^0.0.4
+  url_launcher: ^6.1.8
+  anim_search_bar: ^2.0.3
+  liquid_pull_to_refresh: ^3.0.1
+  
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +86,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
   # fonts:
   #   - family: Schyler
   #     fonts:

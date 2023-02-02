@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors, unnecessary_import
+
 import 'dart:ui';
+import 'package:flutter/material.dart';
 
 class AppColor {
   static Color homePageBackground = const Color(0xFFfbfcff);
@@ -19,4 +22,12 @@ class AppColor {
   static Color loopColor = const Color(0xFF6d8dea);
   static Color setsColor = const Color(0xFF9999a9);
   static Color circuitsColor = const Color(0xFF2f2f51);
+
+  static Color primaryTextColor = Color(0xFF414C6B);
+  static Color secondaryTextColor = Color(0xFFE4979E);
+  static Color titleTextColor = Colors.white;
+  static Color contentTextColor = Color(0xff868686);
+  static Color navigationColor = Color(0xFF6751B5);
+  static Color gradientStartColor = Color(0xFFd772ea);
+  static Color gradientEndColor = Color(0xFF9356fb);
 }
