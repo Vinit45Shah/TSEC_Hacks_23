@@ -25,6 +25,10 @@ const NGOSchema = new mongoose.Schema({
     type: [mongoose.Schema.Types.ObjectId],
     ref: "Volunteer",
   },
+  medicine: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Medicine",
+  },
 });
 
 const NGO = mongoose.model("NGO", NGOSchema);

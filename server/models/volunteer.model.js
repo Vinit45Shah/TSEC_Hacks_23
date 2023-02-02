@@ -25,6 +25,10 @@ const VolunteerSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "NGO",
   },
+  transferred: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Medicine",
+  },
 });
 
 const Volunteer = mongoose.model("Volunteer", VolunteerSchema);

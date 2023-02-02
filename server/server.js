@@ -5,6 +5,7 @@ const userRouter = require("./routes/user.route");
 const ngoRouter = require("./routes/ngo.route");
 const volRouter = require("./routes/volunteer.route");
 const doctorRouter = require("./routes/doctor.route");
+const medicineRouter = require("./routes/medicine.route");
 
 const app = express();
 const cors = require("cors");
@@ -15,6 +16,7 @@ app.use(userRouter);
 app.use(ngoRouter);
 app.use(volRouter);
 app.use(doctorRouter);
+app.use(medicineRouter);
 
 // app.post("/login", async (req, res) => {
 //   try {
