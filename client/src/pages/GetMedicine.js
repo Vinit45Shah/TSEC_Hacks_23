@@ -1,22 +1,53 @@
-import React from 'react'
-import MedicineCard from '../components/MedicineCard'
-import Navbar from '../components/Navbar'
-import img from '../assets/bg.jpg'
-import img1 from '../assets/img1.jpg'
+import React, { useEffect, useState } from "react";
+import MedicineCard from "../components/MedicineCard";
+import Navbar from "../components/Navbar";
+import img from "../assets/bg.jpg";
+import img1 from "../assets/img1.jpg";
+import axios from "axios";
+
 const GetMedicine = () => {
-    return (
-        <div>
-            <Navbar/>
-            <div className='grid md:grid-cols-3 sm:grid-cols-1 2xl:grid-cols-4 justify-evenly px-8 '>
-                <MedicineCard name="Crocin" quantity="2" expiry="12-02-2023" img={img}/>
-                <MedicineCard name="Dolo" quantity="1" expiry="12-02-2023" img={img1}/>
-                <MedicineCard name="Malum Nahi" quantity="3" expiry="12-02-2023" img={img}/>
-                <MedicineCard name="Dolo dose 2" quantity="1" expiry="12-02-2023" img={img1}/>
-                <MedicineCard name="Dolo dose 3" quantity="2" expiry="12-02-2023" img={img}/>
+  const [meds, setMeds] = useState([]);
+  const url = "http://localhost:5000";
 
-            </div>
-        </div>
-    )
-}
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await axios.get(url + "/getMedicinesForNgo", {
+          headers: {
+            "auth-token": localStorage.getItem("token"),
+          },
+        });
+        console.log(res.data);
+        setMeds(res.data.meds);
+      } catch (err) {
+        alert("Error");
+        console.log(err);
+      }
+    }
+    fetchData();
+  }, []);
 
-export default GetMedicine
+  return (
+    <div>
+      <Navbar />
+      <div className="grid md:grid-cols-3 sm:grid-cols-1 2xl:grid-cols-4 justify-evenly px-8 ">
+        {meds &&
+          meds[0] &&
+          meds.map((element, index) => {
+            return (
+              <MedicineCard
+                name={element.commonname}
+                quantity={element.quantity}
+                expiry={element.expiry}
+                img={img}
+                key={index}
+                oid={element._id}
+              />
+            );
+          })}
+      </div>
+    </div>
+  );
+};
+
+export default GetMedicine;

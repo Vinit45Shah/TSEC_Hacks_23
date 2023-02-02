@@ -9,7 +9,7 @@ import Medicine from "./pages/Medicine";
 import Diabetes from "./components/Diabetes";
 import Home from "./pages/Home";
 import FindMedicine from "./components/FindMedicine";
-import Volunteer from './pages/Volunteer'
+import Volunteer from "./pages/Volunteer";
 import Rewards from "./pages/Rewards";
 import Consult from "./pages/Consult";
 
@@ -18,20 +18,20 @@ function App() {
     <div className="App font-ourfont overflow-x-hidden">
       <Router>
         <Routes>
-          <Route path="/rewards" element={<Rewards/>} />
-          <Route path="/volunteer" element={<Volunteer/>} />
-          <Route path="/medicine" element={<Medicine/>} />
-          <Route path="/fetchallmedicine" element={<GetMedicine/>} />
-          <Route path="/clienthome" element={<UserLandingPage/>} />
-          <Route path="/postmedicine" element={<PostMedicine/>} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/ocr" element={<OCR/>} />
-          <Route path="/predict" element={<Diabetes/>} />
-          <Route path="/" element={<Home/>} />
-          <Route path="/find-medicine" element={<FindMedicine/>} />
-          <Route path="/consult" element={<Consult/>} />
+          <Route path="/medicine/:id" element={<Medicine />} />
+          <Route path="/fetchallmedicine" element={<GetMedicine />} />
+          <Route path="/clienthome" element={<UserLandingPage />} />
+          <Route path="/postmedicine" element={<PostMedicine />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/ocr" element={<OCR />} />
+          <Route path="/predict" element={<Diabetes />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/find-medicine" element={<FindMedicine />} />
+          <Route path="/rewards" element={<Rewards />} />
+          <Route path="/volunteer" element={<Volunteer />} />
+          <Route path="/consult" element={<Consult />} />
         </Routes>
-        </Router>
+      </Router>
     </div>
   );
 }

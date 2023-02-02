@@ -107,4 +107,27 @@ router.get("/getMedicineNgo", fetchNgo, async (req, res) => {
   }
 });
 
+router.get("/getMedicinesForNgo", fetchNgo, async (req, res) => {
+  try {
+    let meds = await medicines.find({
+      ownedby: req.ngo.id,
+      sendto: { $exists: false },
+    });
+    res.json({ meds });
+  } catch (err) {
+    console.log(err);
+    res.json({ status: "error", error: err });
+  }
+});
+
+router.get("/fetchNgoById", async (req, res) => {
+  try {
+    let data = await ngos.findOne({ _id: req.headers.id });
+    res.json({ data });
+  } catch (error) {
+    console.log(error);
+    res.json({ status: "error", error: error });
+  }
+});
+
 module.exports = router;
