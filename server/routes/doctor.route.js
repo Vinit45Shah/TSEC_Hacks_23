@@ -85,4 +85,16 @@ router.post(
   }
 );
 
+router.get("/getAllDoctors", 
+async (req, res) => {
+  try{
+const doctor = await doctors.find({})
+res.json(doctor)
+  }catch (err){
+    console.log(err);
+    res.status(500).send("Some error occured")
+  }
+
+});
+
 module.exports = router;

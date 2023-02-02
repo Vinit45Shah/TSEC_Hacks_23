@@ -11,6 +11,8 @@ import Home from "./pages/Home";
 import FindMedicine from "./components/FindMedicine";
 import Volunteer from './pages/Volunteer'
 import Rewards from "./pages/Rewards";
+import Consult from "./pages/Consult";
+
 function App() {
   return (
     <div className="App font-ourfont overflow-x-hidden">
@@ -27,6 +29,7 @@ function App() {
           <Route path="/predict" element={<Diabetes/>} />
           <Route path="/" element={<Home/>} />
           <Route path="/find-medicine" element={<FindMedicine/>} />
+          <Route path="/consult" element={<Consult/>} />
         </Routes>
         </Router>
     </div>
