@@ -1,7 +1,7 @@
 var jwt = require("jsonwebtoken");
 const JWT_SECRET = "hetvi";
 
-const fetchUser = (req, res, next) => {
+const fetchDoc = (req, res, next) => {
   const token = req.header("auth-token");
   if (!token) {
     res.status(401).send({ error: "Error occured" });
@@ -9,11 +9,11 @@ const fetchUser = (req, res, next) => {
 
   try {
     const data = jwt.verify(token, JWT_SECRET);
-    req.user = data.user;
+    req.doctor = data.doctor;
     next();
   } catch (error) {
     res.status(401).send({ error: "Error occured" });
   }
 };
 
-module.exports = fetchUser;
+module.exports = fetchDoc;
