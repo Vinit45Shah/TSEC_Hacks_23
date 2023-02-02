@@ -1,8 +1,10 @@
 const express = require("express");
 const ngos = require("../models/ngo.model");
+const medicines = require("../models/medicine.model");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
+const fetchNgo = require("../middleware/fetchNgo");
 var jwt = require("jsonwebtoken");
 
 router.post(
@@ -81,5 +83,28 @@ router.post(
     }
   }
 );
+
+router.get("/getMedicine", fetchNgo, async (req, res) => {
+  try {
+    let medicine = await medicines.findOneAndUpdate(
+      { _id: req.body.id },
+      {
+        ownedby: req.ngo.id,
+      }
+    );
+
+    let ngo = await ngos.findOneAndUpdate(
+      { _id: req.ngo.id },
+      {
+        $push: { medicine: req.body.id },
+      }
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    console.log(err);
+    res.json({ status: "error", error: err });
+  }
+});
 
 module.exports = router;
