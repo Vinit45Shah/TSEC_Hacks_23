@@ -9,6 +9,9 @@ import Medicine from "./pages/Medicine";
 import Diabetes from "./components/Diabetes";
 import Home from "./pages/Home";
 import FindMedicine from "./components/FindMedicine";
+import Volunteer from "./pages/Volunteer";
+import Rewards from "./pages/Rewards";
+import Consult from "./pages/Consult";
 
 function App() {
   return (
@@ -24,6 +27,9 @@ function App() {
           <Route path="/predict" element={<Diabetes />} />
           <Route path="/" element={<Home />} />
           <Route path="/find-medicine" element={<FindMedicine />} />
+          <Route path="/rewards" element={<Rewards />} />
+          <Route path="/volunteer" element={<Volunteer />} />
+          <Route path="/consult" element={<Consult />} />
         </Routes>
       </Router>
     </div>
