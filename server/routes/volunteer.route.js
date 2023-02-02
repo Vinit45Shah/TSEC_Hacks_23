@@ -61,8 +61,8 @@ router.get("/getMedsToTransfer", async (req, res) => {
       sendto: { $exists: true },
       transferredby2: { $exists: false },
     });
-    med1.push(med2);
-    res.json({ med1 });
+
+    res.json({ userToNgo: med1, ngoToUser: med2 });
   } catch (err) {
     console.log(err);
     res.json({ status: "error", error: err });
