@@ -20,7 +20,7 @@ const PostMedicine = () => {
         </div>
         <div className="flex justify-center space-x-4 ">
           {/* <img src={bg} alt="img" className='backgroundimage relative opacity-50 rounded-lg ' /> */}
-          <div className="rounded-lg absolute flex">
+          <div className="rounded-lg flex">
             <img src={girl} alt="image" className="-translate-y-4" />
             <div className="flex flex-col min-w-full min-h-full mb-7">
               <div className="py-2 px-4">
@@ -114,6 +114,7 @@ const PostMedicine = () => {
                   />
                 </div>
               </div>
+              <button className="btn-primary w-1/3 mx-auto">Donate</button>
             </div>
           </div>
         </div>
