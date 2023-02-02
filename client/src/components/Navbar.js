@@ -2,12 +2,12 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <div className="py-8 px-16 flex items-center justify-between">
+    <div className="py-2 px-16 flex items-center justify-between">
       <div className="flex items-center">
         <img className="w-[50px]"  />
-        <h1 className="font-bold text-2xl text-[#3A8EF6] ml-4">
+        <a href='/' className="font-bold text-2xl text-[#3A8EF6] ml-4">
           MediShare
-        </h1>
+        </a>
       </div>
       <div>
         <button className="btn-primary ">

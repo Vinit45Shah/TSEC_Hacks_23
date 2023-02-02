@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// import Navbar from "../../components/Navbar";
+import Navbar from './Navbar'
 
 const Diabetes = () => {
   const [pregnancies, setPregnancies] = useState();
@@ -70,11 +70,11 @@ const Diabetes = () => {
   }
 
   return (
-    <div>
-      {/* <Navbar /> */}
-      <div className="w-full h-full">
-      <div id="dropdown" className="bg-white divide-y divide-gray-100 rounded-lg shadow w-full dark:bg-gray-700" >
-        <div className="m-10 border border-slate-100 rounded-xl flex flex-col justify-between items-center">
+    <div className="overflow-y-hidden">
+      <Navbar />
+      {/* <div className="w-full h-full bg-gradient-to-r from-primary-dark to-primary-light"> */}
+      <div id="dropdown" className="mx-auto rounded-md shadow w-1/2 bg-gradient-to-r from-primary-dark to-primary-light" >
+        <div className="flex flex-col justify-between items-center mt-5">
           <input
             type="number"
             placeholder="No. Of Pregnancies"
@@ -132,7 +132,7 @@ const Diabetes = () => {
             className="p-3 m-3 rounded-md"
           />
           <button
-            className="text-white mb-5 bg-btn-left hover:bg-btn-right font-medium rounded-lg text-sm px-4 py-2 mx-5"
+            className="text-primary-black mb-5 bg-white rounded-lg hover:bg-gray-100 hover:shadow-lg text-md px-5 py-2 m-5 mx-5 "
             onClick={predict}
             type="submit"
           >
@@ -144,7 +144,6 @@ const Diabetes = () => {
             </p>
           )}
         </div>
-      </div>
       </div>
     </div>
   );
