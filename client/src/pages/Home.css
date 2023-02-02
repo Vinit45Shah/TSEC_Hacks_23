@@ -1,0 +1,47 @@
+/* * {
+    margin: 0;
+    padding: 0;
+} */
+
+.customBody {
+    background-color: #262626;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    text-align: center;
+}
+
+.customDiv {
+    color:rgb(72,71,71);
+  /*I use 10vw to make the font-size responsive*/
+    font-size: 10vw;
+}
+
+.customSpan {
+   /*I use ms because with JS you can only use ms and not s and I want to get use to use this unit :D*/
+    animation:lighting 1000ms linear infinite;
+}
+
+#A1 {animation-delay: 200ms;}
+#A2 {animation-delay: 300ms;}
+#A3 {animation-delay: 400ms;}
+#A4 {animation-delay: 500ms;}
+#A5 {animation-delay: 600ms;}
+#A6 {animation-delay: 700ms;}
+#A7 {animation-delay: 800ms;}
+#A8 {animation-delay: 900ms;}
+#A9 {animation-delay: 900ms;}
+#A10 {animation-delay: 1000ms;}
+#A11 {animation-delay: 1100ms;}
+#A12 {animation-delay: 1200ms;}
+
+@keyframes lighting {
+    0% {
+        color:#D772EA;
+        text-shadow:
+          0 0 0.8rem #9356FB,
+        0 0 0.8rem #c81ee6;
+    }
+}

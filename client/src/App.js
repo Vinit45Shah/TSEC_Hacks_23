@@ -4,6 +4,8 @@ import PostMedicine from "./pages/PostMedicine";
 import UserLandingPage from "./pages/UserLandingPage";
 import Login from "./pages/Login";
 import OCR from "./components/OCR";
+import Diabetes from "./components/Diabetes";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           <Route path="/postmedicine" element={<PostMedicine/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/ocr" element={<OCR/>} />
+          <Route path="/predict" element={<Diabetes/>} />
+          <Route path="/" element={<Home/>} />
         </Routes>
         </Router>
     </div>
