@@ -3,10 +3,21 @@ const medicines = require("../models/medicine.model");
 const router = express.Router();
 const fetchUser = require("../middleware/fetchUser");
 const users = require("../models/user.model");
+const multer = require("multer");
+
+var storage = multer.diskStorage({
+  destination: "uploads",
+  filename: (req, file, cb) => {
+    cb(null, req.user.id + "-" + Date.now() + ".jpg");
+  },
+});
+
+var upload = multer({ storage: storage });
 
 router.post(
   "/postmed",
   fetchUser,
+  upload.single("image"),
   [
     // body("desc", "Enter a valid description of 5 length atleast").isLength({min:5}),
     // body("tags", "Enter atleast 1 tag").isLength({min :1})
@@ -15,6 +26,7 @@ router.post(
     let success = false;
     try {
       const user = await users.findById(req.user.id);
+      console.log(req.file);
       const {
         commonname,
         quantity,
@@ -32,6 +44,10 @@ router.post(
         manufacturer,
         addedby: req.user.id,
         time,
+        image: {
+          data: req.file.filename,
+          contentType: "image/jpg",
+        },
       });
       const increase = user.points + quantity * 10;
       await users.findByIdAndUpdate(req.user.id, { points: increase });

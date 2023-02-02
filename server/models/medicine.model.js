@@ -21,7 +21,8 @@ const medicineSchema = new Schema({
     type: String,
   },
   image: {
-    type: Buffer,
+    data: Buffer,
+    contentType: String,
   },
   addedby: {
     type: mongoose.Schema.Types.ObjectId,

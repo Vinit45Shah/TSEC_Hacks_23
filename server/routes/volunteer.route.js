@@ -51,6 +51,24 @@ router.post(
   }
 );
 
+router.get("/getMedsToTransfer", async (req, res) => {
+  try {
+    let med1 = await medicines.find({
+      ownedby: { $exists: true },
+      transferredby1: { $exists: false },
+    });
+    let med2 = await medicines.find({
+      sendto: { $exists: true },
+      transferredby2: { $exists: false },
+    });
+    med1.push(med2);
+    res.json({ med1 });
+  } catch (err) {
+    console.log(err);
+    res.json({ status: "error", error: err });
+  }
+});
+
 router.post(
   "/loginvolunteer",
   [body("email").isEmail(), body("password").isLength({ min: 5 })],
