@@ -2,6 +2,7 @@ require("dotenv").config();
 require("./db.js");
 const express = require("express");
 const userRouter = require('./routes/user.route')
+const doctorRouter = require('./routes/doctor.route')
 
 const app = express();
 const cors = require("cors");
@@ -9,6 +10,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 app.use(userRouter)
+app.use(doctorRouter)
 
 // app.post("/login", async (req, res) => {
 //   try {
