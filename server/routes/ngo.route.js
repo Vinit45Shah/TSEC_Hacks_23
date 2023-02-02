@@ -84,7 +84,7 @@ router.post(
   }
 );
 
-router.get("/getMedicine", fetchNgo, async (req, res) => {
+router.get("/getMedicineNgo", fetchNgo, async (req, res) => {
   try {
     let medicine = await medicines.findOneAndUpdate(
       { _id: req.body.id },
