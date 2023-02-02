@@ -1,14 +1,19 @@
 require("dotenv").config();
 require("./db.js");
 const express = require("express");
-const userRouter = require('./routes/user.route')
+const userRouter = require("./routes/user.route");
+const ngoRouter = require("./routes/ngo.route");
+const volRouter = require("./routes/volunteer.route");
 
 const app = express();
 const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
-app.use(userRouter)
+app.use(userRouter);
+app.use(ngoRouter);
+app.use(userRouter);
+app.use(volRouter);
 
 // app.post("/login", async (req, res) => {
 //   try {
