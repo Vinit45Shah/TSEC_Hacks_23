@@ -7,6 +7,7 @@ import OCR from "./components/OCR";
 import Diabetes from "./components/Diabetes";
 import Home from "./pages/Home";
 import FindMedicine from "./components/FindMedicine";
+import Consult from "./pages/Consult";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/predict" element={<Diabetes/>} />
           <Route path="/" element={<Home/>} />
           <Route path="/find-medicine" element={<FindMedicine/>} />
+          <Route path="/consult" element={<Consult/>} />
         </Routes>
         </Router>
     </div>
