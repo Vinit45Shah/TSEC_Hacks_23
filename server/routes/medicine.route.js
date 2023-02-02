@@ -1,7 +1,8 @@
 const express = require("express");
 const medicines = require("../models/medicine.model");
 const router = express.Router();
-const fetchUser = require('../middleware/fetchUser')
+const fetchUser = require('../middleware/fetchUser');
+const users = require("../models/user.model");
 
 
 router.post("/postmed", 
@@ -13,6 +14,7 @@ fetchUser,
     async(req, res)=>{
         let success = false
     try{
+        const user = await users.findById(req.user.id)
         const {commonname, quantity, expiry, scientificname, manufacturer, time} = req.body
         // console.log(req.body);
         const medicine = new medicines({
@@ -24,6 +26,8 @@ fetchUser,
             addedby: req.user.id,
             time
         })
+        const increase = user.points + quantity*10;
+        await users.findByIdAndUpdate(req.user.id, {points: increase})
 
         const newCreatedMed = await medicine.save()
         success = true
