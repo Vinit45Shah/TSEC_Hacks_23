@@ -32,10 +32,10 @@ const userLandingPage = () => {
             <img src={Search} alt="img" className='w-56' />
           </div>
 
-          <div className='px-16 flex justify-evenly bg-white rounded-md py-4'>
+          <a href='/consult' className='px-16 flex justify-evenly bg-white rounded-md py-4 hover:shadow-primary-sd'>
             <img src={Doctor} alt="img" className='w-56' />
             <Card heading="Need Consultation?" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias temporibus explicabo cumque, impedit qui libero dicta, ipsum laudantium officiis porro voluptates a aliquam tempore dolorem magnam ducimus odio repellendus architecto." />
-          </div>
+          </a>
         </div></div>
     </div>
   )
