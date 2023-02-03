@@ -10,6 +10,7 @@ import Diabetes from "./components/Diabetes";
 import Home from "./pages/Home";
 import FindMedicine from "./components/FindMedicine";
 import Consult from "./pages/Consult";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/find-medicine" element={<FindMedicine/>} />
           <Route path="/consult" element={<Consult/>} />
+          <Route path="/dashboard" element={<Dashboard/>} />
         </Routes>
         </Router>
     </div>
