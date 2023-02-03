@@ -84,6 +84,16 @@ router.post(
   }
 );
 
+router.get("/fetchUserById", async (req, res) => {
+  try {
+    let data = await users.findOne({ _id: req.headers.id });
+    res.json({ data });
+  } catch (error) {
+    console.log(error);
+    res.json({ status: "error", error: error });
+  }
+});
+
 router.get("/fetchAllMedicinesUser", fetchUser, async (req, res) => {
   try {
     let meds = await medicines.find({

@@ -20,6 +20,10 @@ const medicineSchema = new Schema({
   manufacturer: {
     type: String,
   },
+  image: {
+    data: Buffer,
+    contentType: String,
+  },
   addedby: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
