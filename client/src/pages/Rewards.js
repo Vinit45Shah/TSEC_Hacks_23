@@ -39,7 +39,7 @@ const Rewards = () => {
           },
         }
       );
-      navigate("/rewards");
+      console.log(res.data);
     } catch (err) {
       alert("Error");
       console.log(err);
@@ -57,7 +57,10 @@ const Rewards = () => {
           >
             Your Rewards {points}
           </div>
-          <div className="grid md:grid-cols-3 sm:grid-cols-1 2xl:grid-cols-4 justify-evenly px-8 mb-16 space-x-12">
+          <div
+            className="grid md:grid-cols-3 sm:grid-cols-1 2xl:grid-cols-4 justify-evenly px-8 mb-16 space-x-12"
+            onClick={(e) => decrease(e, 50)}
+          >
             <div className="bg-primary-gray rounded-lg overflow-hidden shadow-lg">
               <img src={Amazon} alt="Company Logo" className="h-48 w-full" />
               <div className="p-8">
