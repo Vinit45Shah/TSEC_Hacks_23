@@ -154,9 +154,11 @@ const PostMedicine = () => {
                   />
                 </div>
               </div>
-              <button className="btn-primary w-1/3 mx-auto" onClick={post}>
+              <div className="py-2 px-4">
+              <button className="btn-primary" onClick={post}>
                 Donate
               </button>
+              </div>
             </div>
           </div>
         </div>
