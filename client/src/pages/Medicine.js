@@ -51,7 +51,21 @@ const Medicine = () => {
       <Navbar />
       {data && sender && (
         <div className="flex px-8 justify-evenly">
-          <img src={bg} alt="Medicine" className="w-1/2" />
+          <img
+            src={
+              data.image
+                ? "data:image/jpg;base64," +
+                  btoa(
+                    String.fromCharCode.apply(
+                      null,
+                      new Uint8Array(data.image.data.data)
+                    )
+                  )
+                : bg
+            }
+            alt="Medicine"
+            className="w-1/2"
+          />
           <div className="bg-primary-gray rounded-lg p-8 space-y-4 flex flex-col justify-between">
             <div className="space-y-4">
               <div className="font-semibold text-xl text-center">

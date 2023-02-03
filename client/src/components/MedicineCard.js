@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const MedicineCard = (props) => {
   const navigate = useNavigate();
+  console.log(props.img);
 
   function goTo(e) {
     e.preventDefault();

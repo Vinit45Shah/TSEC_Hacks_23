@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar";
 import bg from "../assets/bg.jpg";
 import girl from "../assets/girl.png";
 import axios from "axios";
-import fileToArrayBuffer from "file-to-array-buffer";
 
 const PostMedicine = () => {
   const [commonname, setCommonname] = useState("");

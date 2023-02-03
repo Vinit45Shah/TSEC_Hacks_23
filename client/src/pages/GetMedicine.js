@@ -5,20 +5,15 @@ import img from "../assets/bg.jpg";
 import img1 from "../assets/img1.jpg";
 import axios from "axios";
 
-const GetMedicine = () => {
+const GetMedicine = ({ org }) => {
   const [meds, setMeds] = useState([]);
   const url = "http://localhost:5000";
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await axios.get(url + "/getMedicinesForNgo", {
-          headers: {
-            "auth-token": localStorage.getItem("token"),
-          },
-        });
-        console.log(res.data);
-        setMeds(res.data.meds);
+        const res = await axios.get(url + `/fetchAllMedicinesFor${org}`);
+        setMeds(res.data.med);
       } catch (err) {
         alert("Error");
         console.log(err);
@@ -34,12 +29,23 @@ const GetMedicine = () => {
         {meds &&
           meds[0] &&
           meds.map((element, index) => {
+            element.image && console.log(element.image.data.data);
             return (
               <MedicineCard
                 name={element.commonname}
                 quantity={element.quantity}
                 expiry={element.expiry}
-                img={img}
+                img={
+                  element.image
+                    ? "data:image/jpg;base64," +
+                      btoa(
+                        String.fromCharCode.apply(
+                          null,
+                          new Uint8Array(element.image.data.data)
+                        )
+                      )
+                    : img
+                }
                 key={index}
                 oid={element._id}
               />

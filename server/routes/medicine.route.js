@@ -4,6 +4,8 @@ const router = express.Router();
 const fetchUser = require("../middleware/fetchUser");
 const users = require("../models/user.model");
 const multer = require("multer");
+const fs = require("fs");
+var path = require("path");
 
 var storage = multer.diskStorage({
   destination: "uploads",
@@ -24,6 +26,7 @@ router.post(
   ],
   async (req, res) => {
     let success = false;
+    console.log(__dirname + "../uploads/" + req.file.filename);
     try {
       const user = await users.findById(req.user.id);
       console.log(req.file);
@@ -36,6 +39,10 @@ router.post(
         time,
       } = req.body;
       // console.log(req.body);
+      let dir = __dirname.split("\\");
+      dir.pop();
+      dir = dir.join("\\");
+
       const medicine = new medicines({
         commonname,
         quantity,
@@ -45,7 +52,9 @@ router.post(
         addedby: req.user.id,
         time,
         image: {
-          data: req.file.filename,
+          data: fs.readFileSync(
+            path.join(dir + "\\uploads\\" + req.file.filename)
+          ),
           contentType: "image/jpg",
         },
       });
@@ -66,6 +75,29 @@ router.post(
 router.get("/getMedsById", async (req, res) => {
   try {
     let med = await medicines.findOne({ _id: req.headers.id });
+    res.json({ med });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Some error occured");
+  }
+});
+
+router.get("/fetchAllMedicinesForNgo", async (req, res) => {
+  try {
+    let med = await medicines.find({ ownedby: { $exists: false } });
+    res.json({ med });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Some error occured");
+  }
+});
+
+router.get("/fetchAllMedicinesForUser", async (req, res) => {
+  try {
+    let med = await medicines.find({
+      ownedby: { $exists: true },
+      sendto: { $exists: false },
+    });
     res.json({ med });
   } catch (err) {
     console.log(err);

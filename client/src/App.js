@@ -19,7 +19,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/medicine/:id" element={<Medicine />} />
-          <Route path="/fetchallmedicine" element={<GetMedicine />} />
+          <Route path="/fetchallmedicine" element={<GetMedicine org="Ngo" />} />
           <Route path="/clienthome" element={<UserLandingPage />} />
           <Route path="/postmedicine" element={<PostMedicine />} />
           <Route path="/login" element={<Login />} />
