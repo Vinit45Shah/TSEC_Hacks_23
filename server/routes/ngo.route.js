@@ -87,7 +87,7 @@ router.post(
 router.get("/getMedicineNgo", fetchNgo, async (req, res) => {
   try {
     let medicine = await medicines.findOneAndUpdate(
-      { _id: req.body.id },
+      { _id: req.headers.id },
       {
         ownedby: req.ngo.id,
       }

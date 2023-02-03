@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import bg from "../assets/bg.jpg";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Medicine = () => {
   const [data, setData] = useState(null);
   const [sender, setSender] = useState(null);
   const id = useParams().id;
+  const navigate = useNavigate();
   const url = "http://localhost:5000";
 
   useEffect(() => {
@@ -46,6 +47,34 @@ const Medicine = () => {
     fetchSender(user);
   }, [data]);
 
+  function _arrayBufferToBase64(buffer) {
+    var binary = "";
+    var bytes = new Uint8Array(buffer);
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+  }
+
+  async function getMeds(e) {
+    try {
+      const res = await axios.get(url + `/getMedicineNgo`, {
+        headers: {
+          "auth-token":
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ28iOnsiaWQiOiI2M2RjODVjZGIxNDg1ZTIxOWY0ZTI0MWUifSwiaWF0IjoxNjc1NDAxNDM3fQ.AvX4oaPQOVcvGsskolpKARurY9Hwex4AfFYhG4pHjIo",
+          id: String(id),
+        },
+      });
+      if (res.data.success) {
+        navigate("/fetchallmedicinengo");
+      }
+    } catch (err) {
+      alert("Error");
+      console.log(err);
+    }
+  }
+
   return (
     <div>
       <Navbar />
@@ -55,12 +84,7 @@ const Medicine = () => {
             src={
               data.image
                 ? "data:image/jpg;base64," +
-                  btoa(
-                    String.fromCharCode.apply(
-                      null,
-                      new Uint8Array(data.image.data.data)
-                    )
-                  )
+                  _arrayBufferToBase64(data.image.data.data)
                 : bg
             }
             alt="Medicine"
@@ -97,7 +121,9 @@ const Medicine = () => {
                 Address: <span className="font-normal">{sender.address}</span>
               </div>
             </div>
-            <button className="btn-primary w-full my-48">Get Now</button>
+            <button className="btn-primary w-full my-48" onClick={getMeds}>
+              Get Now
+            </button>
           </div>
         </div>
       )}
