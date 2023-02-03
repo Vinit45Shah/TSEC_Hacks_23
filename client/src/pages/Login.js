@@ -26,7 +26,7 @@ const Login = () => {
       console.log(token);
       localStorage.setItem("token", token);
       localStorage.setItem("userType", role);
-      navigate("/");
+      navigate("/clienthome");
     } catch (err) {
       setEmail("");
       setPassword("");

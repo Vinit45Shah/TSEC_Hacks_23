@@ -29,7 +29,6 @@ const GetMedicine = ({ org }) => {
         {meds &&
           meds[0] &&
           meds.map((element, index) => {
-            element.image && console.log(element.image.data.data);
             return (
               <MedicineCard
                 name={element.commonname}

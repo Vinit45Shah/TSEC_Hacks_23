@@ -28,7 +28,7 @@ const Rewards = () => {
     fetchData();
   }, []);
 
-  async function decrease(e, pts) {
+  async function dec(e, pts) {
     try {
       const res = await axios.post(
         url + `/claimreward`,
@@ -51,15 +51,12 @@ const Rewards = () => {
       <Navbar />
       {points && (
         <div>
-          <div
-            className="font-bold text-4xl text-center py-12"
-            onClick={(e) => decrease(e, 50)}
-          >
+          <div className="font-bold text-4xl text-center py-12">
             Your Rewards {points}
           </div>
           <div
             className="grid md:grid-cols-3 sm:grid-cols-1 2xl:grid-cols-4 justify-evenly px-8 mb-16 space-x-12"
-            onClick={(e) => decrease(e, 50)}
+            onClick={(e) => dec(e, 50)}
           >
             <div className="bg-primary-gray rounded-lg overflow-hidden shadow-lg">
               <img src={Amazon} alt="Company Logo" className="h-48 w-full" />
@@ -76,7 +73,7 @@ const Rewards = () => {
 
             <div
               className="bg-primary-gray rounded-lg overflow-hidden shadow-lg"
-              onClick={(e) => decrease(e, 20)}
+              onClick={(e) => dec(e, 20)}
             >
               <img src={Spotify} alt="Company Logo" className="h-48" />
               <div className="p-8">
@@ -92,7 +89,7 @@ const Rewards = () => {
 
             <div
               className="bg-primary-gray rounded-lg overflow-hidden shadow-lg"
-              onClick={(e) => decrease(e, 100)}
+              onClick={(e) => dec(e, 100)}
             >
               <img src={Zomato} alt="Company Logo" className="h-48" />
               <div className="p-8">
