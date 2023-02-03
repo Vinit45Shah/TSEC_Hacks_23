@@ -16,6 +16,10 @@ const doctorSchema = new Schema(
             type: String,
             required: true,
         },
+        qualification: {
+            type: String,
+            required: true,
+        },
         number: {
             type: Number,
             required: true,
