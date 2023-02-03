@@ -25,7 +25,7 @@ const GetMedicine = ({ org }) => {
   return (
     <div>
       <Navbar />
-      <div className="grid md:grid-cols-3 sm:grid-cols-1 2xl:grid-cols-4 justify-evenly px-8 ">
+      <div className="grid md:grid-cols-3 sm:grid-cols-1 2xl:grid-cols-4 justify-evenly px-8 pt-8 ">
         {meds &&
           meds[0] &&
           meds.map((element, index) => {
