@@ -122,7 +122,7 @@ router.get("/getMedicinesForNgo", fetchNgo, async (req, res) => {
 
 router.get("/fetchNgoById", async (req, res) => {
   try {
-    let data = await ngos.findOne({ _id: req.headers.id });
+    let data = await ngos.findOne({ _id: req.headers.id }).lean();
     res.json({ data });
   } catch (error) {
     console.log(error);

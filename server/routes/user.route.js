@@ -86,7 +86,7 @@ router.post(
 
 router.get("/fetchUserById", async (req, res) => {
   try {
-    let data = await users.findOne({ _id: req.headers.id });
+    let data = await users.findOne({ _id: req.headers.id }).lean();
     res.json({ data });
   } catch (error) {
     console.log(error);

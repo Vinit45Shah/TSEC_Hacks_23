@@ -106,7 +106,7 @@ router.post(
   }
 );
 
-router.get("/deliverMed", fetchVol, async (req, res) => {
+router.post("/deliverMed", fetchVol, async (req, res) => {
   try {
     let volunteer = await volunteers.findOne({ _id: req.volunteer.id });
     let med = await medicines.findOne({ _id: req.body.id });
