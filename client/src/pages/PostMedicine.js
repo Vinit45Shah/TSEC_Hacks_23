@@ -3,6 +3,8 @@ import Navbar from "../components/Navbar";
 import bg from "../assets/bg.jpg";
 import girl from "../assets/girl.png";
 import axios from "axios";
+import fileToArrayBuffer from "file-to-array-buffer";
+
 const PostMedicine = () => {
   const [commonname, setCommonname] = useState("");
   const [quantity, setQuantity] = useState(0);
@@ -16,26 +18,22 @@ const PostMedicine = () => {
 
   async function post(e) {
     e.preventDefault();
-    console.log(file);
+    var form = new FormData();
+    form.append("commonname", commonname);
+    form.append("quantity", quantity);
+    form.append("expiry", expiry);
+    form.append("scientificname", scientificname);
+    form.append("manufacturer", manufacturer);
+    form.append("time", time);
+    form.append("image", file, "image.jpg");
     try {
-      const res = await axios.post(
-        `${url}postmed`,
-        {
-          commonname,
-          quantity,
-          expiry,
-          scientificname,
-          manufacturer,
-          time,
-          file,
+      const res = await axios.post(`${url}postmed`, form, {
+        headers: {
+          "auth-token": localStorage.getItem("token"),
+          "Content-Type": "multipart/form-data",
         },
-        {
-          headers: {
-            "auth-token": localStorage.getItem("token"),
-          },
-          files: {},
-        }
-      );
+      });
+      console.log(res.data);
     } catch (err) {
       console.log(err);
     }
@@ -149,7 +147,7 @@ const PostMedicine = () => {
                 <div className="flex flex-row flex-wrap justify-between">
                   <input
                     type="file"
-                    name="picture"
+                    name="image"
                     className="rounded-xl border border-purple w-96 p-1"
                     onChange={(e) => {
                       setFile(e.target.files[0]);
