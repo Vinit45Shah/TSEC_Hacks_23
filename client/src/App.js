@@ -12,6 +12,7 @@ import FindMedicine from "./components/FindMedicine";
 import Volunteer from "./pages/Volunteer";
 import Rewards from "./pages/Rewards";
 import Consult from "./pages/Consult";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (

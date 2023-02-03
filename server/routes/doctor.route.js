@@ -30,6 +30,7 @@ router.post(
         password: secPass,
         address: req.body.address,
         number: req.body.number,
+        qualification: req.body.qualification,
       });
       const data = {
         doctor: {
