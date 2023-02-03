@@ -22,6 +22,16 @@ const GetMedicine = ({ org }) => {
     fetchData();
   }, []);
 
+  function _arrayBufferToBase64(buffer) {
+    var binary = "";
+    var bytes = new Uint8Array(buffer);
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+  }
+
   return (
     <div>
       <Navbar />
@@ -33,16 +43,11 @@ const GetMedicine = ({ org }) => {
               <MedicineCard
                 name={element.commonname}
                 quantity={element.quantity}
-                expiry={element.expiry}
+                expiry={element.expiry.split("T")[0]}
                 img={
                   element.image
                     ? "data:image/jpg;base64," +
-                      btoa(
-                        String.fromCharCode.apply(
-                          null,
-                          new Uint8Array(element.image.data.data)
-                        )
-                      )
+                      _arrayBufferToBase64(element.image.data.data)
                     : img
                 }
                 key={index}
