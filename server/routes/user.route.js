@@ -130,4 +130,32 @@ router.get("/getMedicineUser", fetchUser, async (req, res) => {
   }
 });
 
+router.get("/getRewardPoints", fetchUser, async (req, res) => {
+  try {
+    let user = await users.findOne({ _id: req.user.id }).lean();
+    res.json({ points: user.points });
+  } catch (error) {
+    console.log(error);
+    res.json({ status: "error", error: error });
+  }
+});
+
+router.post("/claimreward", fetchUser, async (req, res) => {
+  try {
+    let user = await users.findOne({ _id: req.user.id });
+    console.log(user);
+    let decr = user.points - req.body.points;
+    console.log(decr);
+    let user2 = await users.findOneAndUpdate(
+      { _id: req.user.id },
+      { points: decr }
+    );
+    console.log(user2);
+    res.json({ success: true });
+  } catch (error) {
+    console.log(error);
+    res.json({ status: "error", error: error });
+  }
+});
+
 module.exports = router;

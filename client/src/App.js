@@ -20,7 +20,14 @@ function App() {
       <Router>
         <Routes>
           <Route path="/medicine/:id" element={<Medicine />} />
-          <Route path="/fetchallmedicine" element={<GetMedicine org="Ngo" />} />
+          <Route
+            path="/fetchallmedicinengo"
+            element={<GetMedicine org="Ngo" />}
+          />
+          <Route
+            path="/fetchallmedicineuser"
+            element={<GetMedicine org="User" />}
+          />
           <Route path="/clienthome" element={<UserLandingPage />} />
           <Route path="/postmedicine" element={<PostMedicine />} />
           <Route path="/login" element={<Login />} />
@@ -31,6 +38,7 @@ function App() {
           <Route path="/rewards" element={<Rewards />} />
           <Route path="/volunteer" element={<Volunteer />} />
           <Route path="/consult" element={<Consult />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
     </div>
