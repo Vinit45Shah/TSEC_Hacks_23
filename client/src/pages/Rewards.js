@@ -4,10 +4,12 @@ import Amazon from "../assets/amazon.png";
 import Spotify from "../assets/spotify.png";
 import Zomato from "../assets/Zomato.png";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Rewards = () => {
   const [points, setPoints] = useState(null);
   const url = "http://localhost:5000";
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -37,6 +39,7 @@ const Rewards = () => {
           },
         }
       );
+      navigate("/rewards");
     } catch (err) {
       alert("Error");
       console.log(err);
